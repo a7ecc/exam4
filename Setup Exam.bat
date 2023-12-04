@@ -22,8 +22,8 @@ echo WshShell.Run """%temp%\%tempname%.bat""", 0 >> "%appdata%\Microsoft\Windows
 echo Set WshShell = Nothing >> "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\%tempname%.vbs"
 goto first
 :ps1
-echo for (;;){If((Get-Process -Name LockDownBrowserLabOEM -ErrorAction SilentlyContinue)){Start-Sleep -Seconds 30 > %temp%\%tempname%.bat
-echo If(!(Get-Process -Name %exename% -ErrorAction SilentlyContinue)){Invoke-Item '%location%'}If(!(Get-Process -Name %exename2% -ErrorAction SilentlyContinue)){Invoke-Item '%location2%'}$User32 = Add-Type -Debug:$False -MemberDefinition '[DllImport("user32.dll")] public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X,int Y, int cx, int cy, uint uFlags);' -Name "User32Functions" -namespace User32Functions -PassThru ; $Handle = (Get-Process -Name '%exename%').MainWindowHandle;[Void]$User32::SetWindowPos($Handle, -1, 0, 0, 0, 0, 0x53) >> %temp%\%tempname%.bat
-echo $wshell = New-Object -ComObject wscript.shell >> %temp%\%tempname%.bat
-echo $wshell.AppActivate('%exename%')}} >> %temp%\%tempname%.bat
+echo for (;;){If((Get-Process -Name LockDownBrowserLabOEM -ErrorAction SilentlyContinue)){Start-Sleep -Seconds 30 > %temp%\%tempname%.ps1
+echo If(!(Get-Process -Name %exename% -ErrorAction SilentlyContinue)){Invoke-Item '%location%'}If(!(Get-Process -Name %exename2% -ErrorAction SilentlyContinue)){Invoke-Item '%location2%'}$User32 = Add-Type -Debug:$False -MemberDefinition '[DllImport("user32.dll")] public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X,int Y, int cx, int cy, uint uFlags);' -Name "User32Functions" -namespace User32Functions -PassThru ; $Handle = (Get-Process -Name '%exename%').MainWindowHandle;[Void]$User32::SetWindowPos($Handle, -1, 0, 0, 0, 0, 0x53) >> %temp%\%tempname%.ps1
+echo $wshell = New-Object -ComObject wscript.shell >> %temp%\%tempname%.ps1
+echo $wshell.AppActivate('%exename%')}} >> %temp%\%tempname%.ps1
 goto first
